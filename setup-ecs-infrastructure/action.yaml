@@ -8,13 +8,16 @@ inputs:
   cf_template_file_path:
     description: Location of the cloudformation file to deploy
     required: true
+  cf_template_file_name:
+    description: Cloudformation file name
+    required: true
 
 runs:
   using: composite
   steps:
     - name: Checkout
       uses: actions/checkout@v2
-    
+
     - name: Create ECS Service Infrastructure
       shell: bash
       working-directory: cdk
@@ -27,4 +30,4 @@ runs:
         pwd
         aws cloudformation create-stack \
           --stack-name ${{ inputs.cf_stack_name }} \
-          --template-body file://${{ inputs.cf_template_file_path }}
+          --template-body file://${{ inputs.cf_template_file_path }}/${{ inputs.cf_template_file_name }}
