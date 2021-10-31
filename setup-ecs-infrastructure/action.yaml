@@ -18,9 +18,6 @@ runs:
     - name: Checkout
       uses: actions/checkout@v2
 
-    - name: Setup tmate session
-      uses: mxschmitt/action-tmate@v3
-
     - name: Create ECS Service Infrastructure
       shell: bash
       working-directory: cdk
