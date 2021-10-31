@@ -24,4 +24,4 @@ runs:
       run: |
         yarn
         yarn cdk synth -o ${{ inputs.cf_template_file_path }}
-        ls -la ../config/cdk
+        ls -la ${{ inputs.cf_template_file_path }}
