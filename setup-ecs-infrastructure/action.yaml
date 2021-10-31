@@ -5,10 +5,9 @@ inputs:
   cf_stack_name:
     description: Cloudformation Stack Name
     required: true
-  aws_region:
-    description: AWS region to setup the environment
-    required: false
-    default: us-east-2
+  cf_template_file_path:
+    description: Location of the cloudformation file to deploy
+    required: true
 
 runs:
   using: composite
@@ -16,6 +15,6 @@ runs:
     - name: Create ECS Service Infrastructure
       shell: bash
       run: |
-        aws elbv2 create-load-balancer \
-          --name ${{ inputs.cf_stack_name }} \
-          --region ${{ inputs.aws_region }}
+        @aws cloudformation create-stack \
+          --stack-name $(REPOSITORY_NAME)-ecs-infra \
+          --template-body file://${{ inputs. cf_template_file_path }}
