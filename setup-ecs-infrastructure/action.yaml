@@ -25,6 +25,6 @@ runs:
         yarn
         yarn cdk synth -q -o ${{ inputs.cf_template_file_path }}
         aws cloudformation create-stack \
-          --capabilities : [CAPABILITY_IAM]
+          --capabilities : [CAPABILITY_IAM] \
           --stack-name ${{ inputs.cf_stack_name }} \
           --template-body file://${{ inputs.cf_template_file_path }}/${{ inputs.cf_template_file_name }}
