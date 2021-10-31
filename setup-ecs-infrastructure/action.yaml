@@ -25,8 +25,3 @@ runs:
         pwd
         npm install -g aws-cdk
         cdk version
-        echo path is : ${{ inputs.cf_template_file_path }}
-        cdk synth -o ${{ inputs.cf_template_file_path }}
-        # aws cloudformation create-stack \
-        #   --stack-name ${{ inputs.cf_stack_name }} \
-        #   --template-body file://${{ inputs.cf_template_file_path }}/${{ inputs.cf_template_file_name }}
