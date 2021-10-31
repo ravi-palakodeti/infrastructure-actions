@@ -15,6 +15,8 @@ runs:
     - name: Create ECS Service Infrastructure
       shell: bash
       run: |
+        echo path is : ${{ inputs.cf_template_file_path }}
+        pwd
         @aws cloudformation create-stack \
           --stack-name $(REPOSITORY_NAME)-ecs-infra \
-          --template-body file://${{ inputs. cf_template_file_path }}
+          --template-body file://${{ inputs.cf_template_file_path }}
