@@ -17,7 +17,12 @@ runs:
     
     - name: Create ECS Service Infrastructure
       shell: bash
+      working-directory: cdk
       run: |
+        npm install -g aws-cdk
+        cdk synth -o ${{ inputs.cf_template_file_path }}
+        cd ../configs
+        ls -lR
         echo path is : ${{ inputs.cf_template_file_path }}
         pwd
         aws cloudformation create-stack \
